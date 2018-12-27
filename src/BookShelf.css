@@ -6,29 +6,44 @@
 	border-bottom: 1px solid lightgrey;
 }
 
-.myreads-button {
-	position: fixed;
+.myreads-bookshelf-books {
+    display: flex;
+	justify-content: space-evenly;
+	padding-left: 0;
+}
+
+.myreads-bookshelf-book {
+    list-style-type: none;
+}
+
+.myreads-bookshelf-book img {
+    height: 300px;
+}
+
+.myreads-bookshelf-book button {
+	position: relative;
 	right: 25px;
-	bottom: 25px;
-}
-
-.myreads-button button {
-	display: block;
-	width: 50px;
+	width: 60px;
+	height: 60px;
+	border-radius: 30px;
 	border: none;
-	height: 50px;
-	border-radius: 50%;
-	background: #222;
-	background-image: url('logo.svg');
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 28px;
-	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-	font-size: 0;
-	outline: 0;
+	background-image: url('arrow-dropdown.svg');
 }
 
-.myreads-button button:hover {
-	background-color: #555;
-	cursor: pointer;
+@media screen and (max-width: 628px) {
+	.myreads-bookshelf-books {
+		flex-flow: column;
+	}
+
+	.myreads-bookshelf-book {
+		width: fit-content;
+		display: block;
+		margin: auto;
+	}
+}
+
+@media screen and (max-width: 991px) {
+	.myreads-bookshelf-book img {
+		height: 250px;
+	}
 }
