@@ -26,9 +26,11 @@ class App extends Component {
 		return (
 			<div>				
 				<nav className='myreads-title'>MyReads</nav>
-				<BookShelf id='currentlyReading' books={currentlyReading} name='Currently Reading'/>
-				<BookShelf id='wantToRead' books={wantToRead}  name='Want To Read'/>
-				<BookShelf id='read' books={read}  name='Read'/>
+				<div className='bookshelves-container'>
+					<BookShelf id='currentlyReading' books={currentlyReading} name='Currently Reading'/>
+					<BookShelf id='wantToRead' books={wantToRead}  name='Want To Read'/>
+					<BookShelf id='read' books={read}  name='Read'/>
+				</div>
 				<div className='myreads-button'>
 					<button>Search</button>
 				</div>
