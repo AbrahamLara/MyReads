@@ -50,6 +50,7 @@
 .book-title, .book-author {
 	margin-bottom: unset;
 	max-width: 180px;
+	margin-top: 5px;
 }
 
 .book-author {
