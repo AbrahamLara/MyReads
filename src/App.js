@@ -20,6 +20,20 @@ class App extends Component {
 		});
 	}
 
+	moveBookToShelf = (book, shelf) => {
+		BooksAPI.update(book, shelf).then((shelves) => {
+			this.setState((currState) => {
+				let newShelves = {
+					currentlyReading: currState.currentlyReading.filter((book) => shelves.currentlyReading.includes(book.id)),
+					wantToRead: currState.wantToRead.filter((book) => shelves.wantToRead.includes(book.id)),
+					read: currState.read.filter((book) => shelves.read.includes(book.id)),
+				}
+				newShelves[shelf].push(book);
+				return newShelves;
+			});
+		});
+	}
+
 	render() {
 		const { currentlyReading, wantToRead, read } = this.state;
 
@@ -27,9 +41,24 @@ class App extends Component {
 			<div>				
 				<nav className='myreads-title'>MyReads</nav>
 				<div className='bookshelves-container'>
-					<BookShelf id='currentlyReading' books={currentlyReading} name='Currently Reading'/>
-					<BookShelf id='wantToRead' books={wantToRead}  name='Want To Read'/>
-					<BookShelf id='read' books={read}  name='Read'/>
+					<BookShelf
+						id='currentlyReading'
+						books={currentlyReading}
+						name='Currently Reading'
+						onBookMoved={this.moveBookToShelf}
+					/>
+					<BookShelf
+						id='wantToRead'
+						books={wantToRead}
+						name='Want To Read'
+						onBookMoved={this.moveBookToShelf}
+					/>
+					<BookShelf
+						id='read'
+						books={read}
+						name='Read'
+						onBookMoved={this.moveBookToShelf}
+					/>
 				</div>
 				<div className='myreads-button'>
 					<button>Search</button>

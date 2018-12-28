@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import './BookShelf.css';
 
 class BookShelf extends Component {
+
     render() {
-        const { books, id } = this.props;
+        const { books, id, onBookMoved } = this.props;
 
         return (
             <div className='myreads-bookshelf'>
@@ -14,7 +15,7 @@ class BookShelf extends Component {
                             <div className='book-top'>
                                 <img alt='Book Thumbnail' src={`${book.imageLinks.thumbnail}`} />
                                 <div className='myreads-bookshelf-book-dropdown'>
-                                    <select value={id} onChange={(e) => {console.log(e.target.value)}}>
+                                    <select defaultValue={id} onChange={(e) => onBookMoved(book, e.target.value)}>
                                         <option value='move' disabled>Move to...</option>
                                         <option value='currentlyReading'>Currently Reading</option>
                                         <option value='wantToRead'>Want To Read</option>
