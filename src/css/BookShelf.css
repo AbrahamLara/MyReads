@@ -34,7 +34,7 @@
 	border-radius: 30px;
 	border: none;
 	background-color: #222;
-	background-image: url('icons/arrow-dropdown.svg');
+	background-image: url('../icons/arrow-dropdown.svg');
 	background-repeat: no-repeat;
 	background-size: 28px;
 	background-position: center;

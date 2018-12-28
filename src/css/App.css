@@ -30,7 +30,7 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 28px;
-	background-image: url('icons/add.svg');
+	background-image: url('../icons/add.svg');
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 	font-size: 0;
 	outline: 0;
