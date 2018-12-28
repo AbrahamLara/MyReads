@@ -22,8 +22,8 @@
 
 .myreads-button button {
 	display: block;
-	width: 50px;
 	border: none;
+	width: 50px;
 	height: 50px;
 	border-radius: 50%;
 	background: #222;
@@ -39,4 +39,35 @@
 .myreads-button button:hover {
 	background-color: #555;
 	cursor: pointer;
+}
+
+.search-bar {
+	display: flex;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.search-back-button {
+	width: 50px;
+	height: 50px;
+	border: none;
+	background-color: white;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 30px;
+	background-image: url('../icons/arrow-back.svg');
+	font-size: 0;
+}
+
+.search-back-button:hover {
+	cursor: pointer;
+	background-color: #eee;
+}
+
+.search-input {
+	margin: unset;
+	border: none;
+	width: calc(100% - 50px);
+	font-size: 12pt;
+	text-indent: 10px;
+	outline: none;
 }
