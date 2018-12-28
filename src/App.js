@@ -72,7 +72,14 @@ class App extends Component {
 				)}/>
 
 				<Route path='/search' render={() => (
-					<div>hello</div>
+					<div>
+						<div className='search-bar'>
+							<Link to='/'>
+								<button className='search-back-button'>Back</button>
+							</Link>
+							<input placeholder='Search book title' className='search-input'/>
+						</div>
+					</div>
 				)}/>
 			</div>
 		);
