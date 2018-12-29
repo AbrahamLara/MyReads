@@ -14,33 +14,45 @@ class App extends Component {
 
 	componentDidMount() {
 		BooksAPI.getAll().then((books) => {
-			this.setState((currState) => ({
-				currentlyReading: currState.currentlyReading.concat(books.filter((book) => book.shelf === 'currentlyReading')),
-				wantToRead: currState.currentlyReading.concat(books.filter((book) => book.shelf === 'wantToRead')),
-				read: currState.currentlyReading.concat(books.filter((book) => book.shelf === 'read')),
-			}));
-		});
-	}
-
-	moveBookToShelf = (book, shelf) => {
-		BooksAPI.update(book, shelf).then((shelves) => {
-			this.setState((currState) => {
-				let newShelves = {
-					currentlyReading: currState.currentlyReading.filter((book) => shelves.currentlyReading.includes(book.id)),
-					wantToRead: currState.wantToRead.filter((book) => shelves.wantToRead.includes(book.id)),
-					read: currState.read.filter((book) => shelves.read.includes(book.id)),
-				}
-				if (shelf !== 'none') {
-					book.shelf = shelf;
-					newShelves[shelf].push(book);
-				}
-				return newShelves;
+			this.setState({
+				currentlyReading: books.filter((book) => book.shelf === 'currentlyReading'),
+				wantToRead: books.filter((book) => book.shelf === 'wantToRead'),
+				read: books.filter((book) => book.shelf === 'read'),
 			});
 		});
 	}
 
+	moveBookToShelf = (book, shelf) => {
+		BooksAPI.update(book, shelf).then((bookShelves) => {
+			this.setState((currState) => {
+				if (book.shelf !== undefined) {
+					currState[book.shelf] = currState[book.shelf]
+					.filter((b) => bookShelves[book.shelf].includes(b.id));	
+				}
+				
+				if (shelf !== 'none' || book.shelf === 'none') {
+					book.shelf = shelf;
+					currState[shelf].push(book);
+				}
+				
+				return currState;
+			});
+		});
+	}
+
+	getObjShelves = (book) => {
+		let obj = {};
+		obj[book.id] = book.shelf;
+		return obj;
+	}
+
 	render() {
 		const { currentlyReading, wantToRead, read } = this.state;
+
+		let bookShelves = {};
+		[...currentlyReading, ...wantToRead, ...read].forEach((book) => {
+			bookShelves[book.id] = book.shelf;
+		});
 
 		return (
 			<div>				
@@ -75,16 +87,13 @@ class App extends Component {
 					</div>
 				)}/>
 
-				<Route path='/search' render={() => {
-					const bookShelves = [
-						...currentlyReading.map((book) => ({id: book.id, shelf: book.shelf})),
-						...wantToRead.map((book) => ({id: book.id, shelf: book.shelf})),
-						...read.map((book) => ({id: book.id, shelf: book.shelf}))
-					];
-					const bookIDs = bookShelves.map((book) => book.id);
-
-					return (<SearchPage bookShelves={bookShelves} bookIDs={bookIDs} onBookMoved={this.moveBookToShelf}/>)
-				}}/>
+				<Route path='/search' render={() => (
+						<SearchPage
+							bookShelves={bookShelves}
+							onBookMoved={this.moveBookToShelf}
+						/>
+					)
+				}/>
 			</div>
 		);
 	}

@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import './css/Book.css';
 
 class Book extends Component {
+    default_cover = 'https://books.google.com/books/content?id=NLK2AAAAIAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'
+
     render() {
         const { book, onMovedToNewShelf } = this.props;
-        const default_cover = 'https://books.google.com/books/content?id=NLK2AAAAIAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api';
-        const cover = 'imageLinks' in book ? book.imageLinks.thumbnail : default_cover;
+        const cover = 'imageLinks' in book ? book.imageLinks.thumbnail : this.default_cover;
         const shelf = 'shelf' in book ? book.shelf : 'none';
         const authors = 'authors' in book ? book.authors.join(', ') : 'No authors to display';
 
