@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './css/App.css';
 import BookShelf from './BookShelf';
+import SearchPage from './SearchPage';
 import * as BooksAPI from './BooksAPI';
 import { Link, Route } from 'react-router-dom';
 
@@ -71,16 +72,7 @@ class App extends Component {
 					</div>
 				)}/>
 
-				<Route path='/search' render={() => (
-					<div>
-						<div className='search-bar'>
-							<Link to='/'>
-								<button className='search-back-button'>Back</button>
-							</Link>
-							<input placeholder='Search book title' className='search-input'/>
-						</div>
-					</div>
-				)}/>
+				<Route path='/search' component={SearchPage}/>
 			</div>
 		);
 	}

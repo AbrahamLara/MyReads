@@ -46,7 +46,7 @@
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
-.search-back-button {
+.search-page-back-button {
 	width: 50px;
 	height: 50px;
 	border: none;
@@ -58,12 +58,12 @@
 	font-size: 0;
 }
 
-.search-back-button:hover {
+.search-page-back-button:hover {
 	cursor: pointer;
 	background-color: #eee;
 }
 
-.search-input {
+.search-page-input {
 	margin: unset;
 	border: none;
 	width: calc(100% - 50px);

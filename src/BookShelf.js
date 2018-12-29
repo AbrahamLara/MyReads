@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './css/BookShelf.css';
+import Book from './Book';
 
 class BookShelf extends Component {
-
     render() {
         const { books, id, onBookMoved } = this.props;
 
@@ -12,19 +12,13 @@ class BookShelf extends Component {
                 <ul className='myreads-bookshelf-books'>
                     {books.map((book) => (
                         <li key={book.id} className='myreads-bookshelf-book'>
-                            <div className='book-top'>
-                                <img alt='Book Thumbnail' src={`${book.imageLinks.thumbnail}`} />
-                                <div className='myreads-bookshelf-book-dropdown'>
-                                    <select defaultValue={id} onChange={(e) => onBookMoved(book, e.target.value)}>
-                                        <option value='move' disabled>Move to...</option>
-                                        <option value='currentlyReading'>Currently Reading</option>
-                                        <option value='wantToRead'>Want To Read</option>
-                                        <option value='read'>Read</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <p className='book-title'>{book.title}</p>
-                            <p className='book-author'>{book.authors.join(', ')}</p>
+                            <Book
+                                key={book.id}
+                                shelf={id}
+                                cover={book.imageLinks.thumbnail}
+                                book={book}
+                                onMovedToNewShelf={onBookMoved}
+                            />
                         </li>
                     ))}
                 </ul>
