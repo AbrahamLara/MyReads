@@ -1,3 +1,7 @@
+.Book {
+	width: fit-content;
+}
+
 .myreads-bookshelf-book {
 	list-style-type: none;
 	margin-right: 50px;

@@ -4,7 +4,7 @@ import Book from './Book';
 
 class BookShelf extends Component {
     render() {
-        const { books, id, onBookMoved } = this.props;
+        const { books, onBookMoved } = this.props;
 
         return (
             <div className='myreads-bookshelf'>
@@ -14,8 +14,6 @@ class BookShelf extends Component {
                         <li key={book.id} className='myreads-bookshelf-book'>
                             <Book
                                 key={book.id}
-                                shelf={id}
-                                cover={book.imageLinks.thumbnail}
                                 book={book}
                                 onMovedToNewShelf={onBookMoved}
                             />
