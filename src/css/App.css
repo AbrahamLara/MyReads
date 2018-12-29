@@ -1,7 +1,8 @@
 .myreads-title {
 	z-index: 1;
 	position: fixed;
-	background-color: white;
+	background-color: #222;
+	color: white;
 	width: 100%;
 	text-align: center;
 	padding: 10px;
@@ -39,4 +40,11 @@
 .myreads-button button:hover {
 	background-color: #555;
 	cursor: pointer;
+}
+
+@media screen and (max-width: 991px) {
+	.myreads-title {
+		padding: 5px;
+		font-size: 1.5em;
+	}
 }

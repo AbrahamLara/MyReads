@@ -27,7 +27,7 @@ class App extends Component {
 			this.setState((currState) => {
 				if (book.shelf !== undefined) {
 					currState[book.shelf] = currState[book.shelf]
-					.filter((b) => bookShelves[book.shelf].includes(b.id));	
+					.filter((b) => bookShelves[book.shelf].includes(b.id));
 				}
 				
 				if (shelf !== 'none' || book.shelf === 'none') {
@@ -55,7 +55,7 @@ class App extends Component {
 		});
 
 		return (
-			<div>				
+			<div>
 				<Route exact path='/' render={() => (
 					<div>
 						<nav className='myreads-title'>MyReads</nav>

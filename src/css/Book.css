@@ -47,9 +47,3 @@
 		margin: 0 auto 20px;
 	}
 }
-
-@media screen and (max-width: 991px) {
-	.myreads-bookshelf-book img {
-		height: 250px;
-	}
-}
