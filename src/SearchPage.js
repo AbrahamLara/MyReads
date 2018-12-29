@@ -31,6 +31,7 @@ class SearchPage extends Component {
 
     render() {
         const results = this.state.results;
+        const { bookShelves, bookIDs, onBookMoved } = this.props;
 
         return (
             <div>
@@ -46,13 +47,18 @@ class SearchPage extends Component {
                     />
                 </div>
                 <div className='search-page-books'>
-                    {results.map((book) => (
+                    {results.map((book) => {
+                        if (bookIDs.includes(book.id)) {
+                            book['shelf'] = bookShelves.filter((b) => b.id === book.id)[0].shelf;
+                        }
+
+                        return (
                         <Book
                             key={book.id}
                             book={book}
-                            onMovedToNewShelf={() => {}}
+                            onMovedToNewShelf={onBookMoved}
                         />
-                    ))}
+                    )})}
                 </div>
             </div>
         );

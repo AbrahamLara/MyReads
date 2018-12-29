@@ -30,8 +30,10 @@ class App extends Component {
 					wantToRead: currState.wantToRead.filter((book) => shelves.wantToRead.includes(book.id)),
 					read: currState.read.filter((book) => shelves.read.includes(book.id)),
 				}
-				book.shelf = shelf;
-				newShelves[shelf].push(book);
+				if (shelf !== 'none') {
+					book.shelf = shelf;
+					newShelves[shelf].push(book);
+				}
 				return newShelves;
 			});
 		});
@@ -73,7 +75,16 @@ class App extends Component {
 					</div>
 				)}/>
 
-				<Route path='/search' component={SearchPage}/>
+				<Route path='/search' render={() => {
+					const bookShelves = [
+						...currentlyReading.map((book) => ({id: book.id, shelf: book.shelf})),
+						...wantToRead.map((book) => ({id: book.id, shelf: book.shelf})),
+						...read.map((book) => ({id: book.id, shelf: book.shelf}))
+					];
+					const bookIDs = bookShelves.map((book) => book.id);
+
+					return (<SearchPage bookShelves={bookShelves} bookIDs={bookIDs} onBookMoved={this.moveBookToShelf}/>)
+				}}/>
 			</div>
 		);
 	}
