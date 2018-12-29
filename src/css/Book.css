@@ -1,18 +1,10 @@
 .Book {
-	width: fit-content;
-}
-
-.myreads-bookshelf-book {
-	list-style-type: none;
+	width: 140px;
 	margin-right: 50px;
 }
 
 .book-top {
 	position: relative;
-}
-
-.myreads-bookshelf-book img {
-    height: 300px;
 }
 
 .myreads-bookshelf-book-dropdown {
@@ -39,8 +31,8 @@
 
 .book-title, .book-author {
 	margin-bottom: unset;
-	max-width: 180px;
 	margin-top: 5px;
+	font-size: 0.8em;
 }
 
 .book-author {

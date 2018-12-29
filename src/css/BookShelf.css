@@ -12,6 +12,10 @@
 	justify-content: center;
 }
 
+.myreads-bookshelf-book {
+	list-style-type: none;
+}
+
 @media screen and (max-width: 628px) {
 	.myreads-bookshelf-books {
 		flex-flow: column;

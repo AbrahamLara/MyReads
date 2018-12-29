@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
 import Book from './Book';
 import debounce from './debounce';
+import './css/SearchPage.css';
 
 class SearchPage extends Component {
     state = {
@@ -44,7 +45,7 @@ class SearchPage extends Component {
                         className='search-page-input'
                     />
                 </div>
-                <div className='search-page-boobs'>
+                <div className='search-page-books'>
                     {results.map((book) => (
                         <Book
                             key={book.id}
