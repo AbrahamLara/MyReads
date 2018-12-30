@@ -32,5 +32,11 @@
 .search-page-books {
     display: flex;
     flex-wrap: wrap;
- align-items: center;
+ 	align-items: center;
+}
+
+@media screen and (max-width: 919px) {
+	.search-page-books {
+		justify-content: center;
+	}
 }
