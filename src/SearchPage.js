@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
 import Book from './Book';
-import debounce from './debounce';
 import './css/SearchPage.css';
 
 class SearchPage extends Component {
@@ -11,26 +10,32 @@ class SearchPage extends Component {
         results: [],
     }
 
+    timeout = null
+    
     /**
-	 * @description Fires once the users finished typing
+	 * @description Makes search query after 500ms once the user has finished typing
 	 */
-    makeQuery = debounce(() => {
-        const search_query = this.state.search_query;
-        if (search_query === '') {
-            this.setState({
-                results: [],
-            });
-            return;
-        }
-
-        BooksAPI.search(search_query).then((books) => {
-            if (typeof books === 'object' && !('error' in books)) {
+    makeQuery = (query) => {
+        clearTimeout(this.timeout);
+        this.timeout = setTimeout(() => {
+            if (query === '') {
                 this.setState({
-                    results: books,
+                    results: [],
+                    search_query: query,
                 });
+                return;
             }
-        });
-    }, 500)
+
+            BooksAPI.search(query).then((books) => {
+                if (typeof books === 'object' && !('error' in books)) {
+                    this.setState({
+                        results: books,
+                        query: query,
+                    });
+                }
+            });
+        }, 500);
+    }
 
     render() {
         const results = this.state.results;
@@ -43,8 +48,7 @@ class SearchPage extends Component {
                         <button className='search-page-back-button'>Back</button>
                     </Link>
                     <input
-                        onChange={(e) => {this.setState({search_query: e.target.value})}}
-                        onKeyUp={this.makeQuery.bind(this)}
+                        onChange={(e) => {this.makeQuery(e.target.value)}}
                         placeholder='Search by title or author'
                         className='search-page-input'
                     />
