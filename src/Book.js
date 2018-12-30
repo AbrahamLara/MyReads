@@ -6,6 +6,8 @@ class Book extends Component {
 
     render() {
         const { book, onMovedToNewShelf } = this.props;
+
+        // Results in Search page that don't have a cover, shelf, or authors are given default values
         const cover = 'imageLinks' in book ? book.imageLinks.thumbnail : this.default_cover;
         const shelf = 'shelf' in book ? book.shelf : 'none';
         const authors = 'authors' in book ? book.authors.join(', ') : 'No authors to display';

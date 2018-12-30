@@ -11,6 +11,9 @@ class SearchPage extends Component {
         results: [],
     }
 
+    /**
+	 * @description Fires once the users finished typing
+	 */
     makeQuery = debounce(() => {
         const search_query = this.state.search_query;
         if (search_query === '') {

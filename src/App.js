@@ -13,6 +13,10 @@ class App extends Component {
 	}
 
 	componentDidMount() {
+		/**
+		 * Retreives all books that belong in shelves to
+		 * display in the main page
+		 */
 		BooksAPI.getAll().then((books) => {
 			this.setState({
 				currentlyReading: books.filter((book) => book.shelf === 'currentlyReading'),
@@ -22,6 +26,11 @@ class App extends Component {
 		});
 	}
 
+	/**
+	 * @description Moves a books to a new shelf or no shelf
+	 * @param {object} book - A book object
+	 * @param {object} shelf - The shelf the book will be moved to. Can be 'none'
+	 */
 	moveBookToShelf = (book, shelf) => {
 		BooksAPI.update(book, shelf).then((bookShelves) => {
 			this.setState((currState) => {
@@ -39,16 +48,17 @@ class App extends Component {
 			});
 		});
 	}
-
-	getObjShelves = (book) => {
-		let obj = {};
-		obj[book.id] = book.shelf;
-		return obj;
-	}
-
+	
 	render() {
 		const { currentlyReading, wantToRead, read } = this.state;
 
+		/**
+		 * The search method in the api returns books that don't show which
+		 * shelf it is in. The bookShelves object will be passed to the
+		 * SearchPage component so that any book that has its id as a key
+		 * will have its shelf displayed in its dropwdown to be moved to a
+		 * new shelf if they user desires to do so.
+		 */
 		let bookShelves = {};
 		[...currentlyReading, ...wantToRead, ...read].forEach((book) => {
 			bookShelves[book.id] = book.shelf;
