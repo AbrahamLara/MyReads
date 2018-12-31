@@ -5,9 +5,14 @@ import Book from './Book';
 import './css/SearchPage.css';
 
 class SearchPage extends Component {
-    state = {
-        search_query: '',
-        results: [],
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            search_query: '',
+            results: [],
+        }
+        this.timeout = null;
     }
 
     timeout = null
@@ -18,27 +23,23 @@ class SearchPage extends Component {
     makeQuery = (query) => {
         clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
-            if (query === '') {
-                this.setState({
-                    results: [],
-                    search_query: query,
-                });
-                return;
-            }
+            query = query === '' ? ' ' : query;
 
             BooksAPI.search(query).then((books) => {
-                if (typeof books === 'object' && !('error' in books)) {
-                    this.setState({
-                        results: books,
-                        query: query,
-                    });
+                if (typeof books !== 'object' || ('error' in books)) {
+                    books = [];
                 }
+
+                this.setState({
+                    results: books,
+                    search_query: query,
+                });
             });
         }, 500);
     }
 
     render() {
-        const results = this.state.results;
+        const { results } = this.state;
         const { bookShelves, onBookMoved } = this.props;
         
         return (

@@ -15,7 +15,7 @@ class App extends Component {
 	componentDidMount() {
 		/**
 		 * Retreives all books that belong in shelves to
-		 * display in the main page
+		 * be display in the main page
 		 */
 		BooksAPI.getAll().then((books) => {
 			this.setState({
@@ -27,7 +27,7 @@ class App extends Component {
 	}
 
 	/**
-	 * @description Moves a books to a new shelf or no shelf
+	 * @description Moves a book to a new shelf or no shelf
 	 * @param {object} book - A book object
 	 * @param {object} shelf - The shelf the book will be moved to. Can be 'none'
 	 */
@@ -48,12 +48,30 @@ class App extends Component {
 			});
 		});
 	}
+
+	shelfGenerator = () => {
+		const shelves = [
+			[this.state.currentlyReading, 'currentlyReading', 'Currently Reading'],
+			[this.state.wantToRead, 'wantToRead', 'Want To Read'],
+			[this.state.read, 'read', 'Read'],
+		]
+
+		return shelves.map((shelf) => (
+			<BookShelf
+				key={shelf[1]}
+				id={shelf[1]}
+				books={shelf[0]}
+				name={shelf[2]}
+				onBookMoved={this.moveBookToShelf}
+			/>
+		));
+	}
 	
 	render() {
 		const { currentlyReading, wantToRead, read } = this.state;
 
 		/**
-		 * The search method in the api returns books that don't show which
+		 * The search method in the api returns books that doesn't show which
 		 * shelf it is in. The bookShelves object will be passed to the
 		 * SearchPage component so that any book that has its id as a key
 		 * will have its shelf displayed in its dropwdown to be moved to a
@@ -70,24 +88,7 @@ class App extends Component {
 					<div>
 						<nav className='myreads-title'>MyReads</nav>
 						<div className='bookshelves-container'>
-							<BookShelf
-								id='currentlyReading'
-								books={currentlyReading}
-								name='Currently Reading'
-								onBookMoved={this.moveBookToShelf}
-							/>
-							<BookShelf
-								id='wantToRead'
-								books={wantToRead}
-								name='Want To Read'
-								onBookMoved={this.moveBookToShelf}
-							/>
-							<BookShelf
-								id='read'
-								books={read}
-								name='Read'
-								onBookMoved={this.moveBookToShelf}
-							/>
+							{this.shelfGenerator()}
 						</div>
 						<div className='myreads-button'>
 							<Link to='/search'>
