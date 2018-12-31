@@ -5,7 +5,6 @@ import Book from './Book';
 import './css/SearchPage.css';
 
 class SearchPage extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -14,8 +13,6 @@ class SearchPage extends Component {
         }
         this.timeout = null;
     }
-
-    timeout = null
     
     /**
 	 * @description Makes search query after 500ms once the user has finished typing
