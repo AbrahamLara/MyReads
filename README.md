@@ -7,5 +7,7 @@ The backend API uses a fixed set of cached search results and is limited to a pa
 
 ## How to Setup
 
-* install all project dependencies with `npm install`
-* start the development server with `npm start`
+* clone repo: `git clone https://github.com/AbrahamLara/MyReads.git`
+* go into project directory: `cd MyReads/`
+* install all project dependencies: `npm install`
+* start the development server: `npm start` or `yarn start`
