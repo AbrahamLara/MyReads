@@ -1,6 +1,7 @@
 .search-bar {
 	display: flex;
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	margin-bottom: 20px;
 }
 
 .search-page-back-button {
@@ -30,9 +31,8 @@
 }
 
 .search-page-books {
-    display: flex;
-    flex-wrap: wrap;
- 	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 @media screen and (max-width: 919px) {

@@ -5,7 +5,13 @@
 }
 
 .book-top {
+	width: fit-content;
 	position: relative;
+}
+
+.book-cover {
+	height: 200px;
+	max-width: 163px;
 }
 
 .myreads-bookshelf-book-dropdown {

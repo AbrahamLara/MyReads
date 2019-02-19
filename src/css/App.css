@@ -47,4 +47,9 @@
 		padding: 5px;
 		font-size: 1.5em;
 	}
+
+	.myreads-button button {
+		width: 60px;
+		height: 60px;
+	}
 }
